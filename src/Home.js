@@ -4,7 +4,7 @@ const Home = () => {
 const imgURL = 'https://images.unsplash.com/photo-1611095564985-89765398121e?ixid=MXwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2100&q=80'
     return (
         //hero
-        <div className="full-width h-screen lg:flex justify-between py-20 px-10 bg-indigo-100 text-indigo-100">
+        <div className="h-screen lg:flex justify-between py-20 px-10 bg-indigo-100 text-indigo-100">
              {/* left */}
                 <div className="md:w-1/2 mb-10 md:mb-0">
                 <h2 className="text-2xl md:text-4xl lg:text-6xl text-indigo-900 mb-6 shadow-2xs">Welcome to your blog</h2>    

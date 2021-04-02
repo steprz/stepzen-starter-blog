@@ -1,9 +1,9 @@
-import { gql, useQuery } from '@apollo/client';
+import { gql, useQuery } from "@apollo/client";
 
 const GET_STEPZEN = gql`
   query MyHelloWorldQuery {
-    helloWorld {
-      message
+    wordpressPage(id: "15") {
+      id
     }
   }
 `;
@@ -13,10 +13,10 @@ function HelloWorld() {
 
   if (error) return <p>{JSON.stringify(error)}</p>;
   if (loading) return <p>Loading ...</p>;
-
+  console.log(data);
   return (
     <>
-      <p>StepZen says: "{data.helloWorld.message}"</p>
+      <p>StepZen says: "{data.wordpressPage.id}"</p>
       <a
         className="App-link"
         href="https://stepzen.com"

@@ -1,31 +1,37 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import "./index.css";
+import "./App.css";
+import ReactDOM from "react-dom";
+import App from "./App";
+import { BrowserRouter } from "react-router-dom";
 
+import reportWebVitals from "./reportWebVitals";
 
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import {
+  ApolloClient,
+  createHttpLink,
+  InMemoryCache,
+  ApolloProvider,
+} from "@apollo/client";
 const { REACT_APP_STEPZEN_API_KEY, REACT_APP_STEPZEN_URI } = process.env;
 
 const client = new ApolloClient({
+  ssrMode: true,
+  link: createHttpLink({
+    credentials: "same-origin",
+    headers: {
+      Authorization: `Apikey ${REACT_APP_STEPZEN_API_KEY}`,
+    },
+    uri: REACT_APP_STEPZEN_URI,
+  }),
   cache: new InMemoryCache(),
-  headers: {
-    Authorization: `Apikey ${REACT_APP_STEPZEN_API_KEY}`,
-  },
-  uri: REACT_APP_STEPZEN_URI
 });
 
 ReactDOM.render(
-  <React.StrictMode>
+  <BrowserRouter>
     <ApolloProvider client={client}>
       <App />
     </ApolloProvider>
-  </React.StrictMode>,
-  document.getElementById('root')
+  </BrowserRouter>,
+  document.getElementById("root")
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

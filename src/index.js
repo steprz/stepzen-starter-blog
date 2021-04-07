@@ -31,7 +31,7 @@ ReactDOM.render(
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/blogs" component={Post} />
+        <Route exact path="/posts/:postId" component={Post} />
       </Switch>
     </BrowserRouter>
   </ApolloProvider>,

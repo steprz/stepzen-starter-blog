@@ -1,17 +1,16 @@
-import { React, useState } from "react";
-import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
-import MobileMenu from "./menus/mobileMenu";
-import DesktopMenu from "./menus/desktopMenu";
+import { React, useState } from "react";
+
+import DesktopMenu from "./Menus/desktop";
+import MobileMenu from "./Menus/mobile";
 
 const Header = () => {
-  const history = useHistory();
-  // toggle the mobile menu
   const [toggle, setToggle] = useState(false);
 
   const toggleMobile = () => {
     setToggle(!toggle);
   };
+
   return (
     <div className="header-2">
       <nav className="bg-white py-2 md:py-4">

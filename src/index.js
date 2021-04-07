@@ -1,22 +1,21 @@
-import React from "react";
-import "./index.css";
-import "./App.css";
-import ReactDOM from "react-dom";
-import App from "./App";
-import { BrowserRouter } from "react-router-dom";
-
-import reportWebVitals from "./reportWebVitals";
-
 import {
   ApolloClient,
+  ApolloProvider,
   createHttpLink,
   InMemoryCache,
-  ApolloProvider,
 } from "@apollo/client";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import React from "react";
+import ReactDOM from "react-dom";
+
+import Post from "./pages/Post";
+import Home from "./pages/Home";
+
+import "./index.css";
+
 const { REACT_APP_STEPZEN_API_KEY, REACT_APP_STEPZEN_URI } = process.env;
 
 const client = new ApolloClient({
-  ssrMode: true,
   link: createHttpLink({
     credentials: "same-origin",
     headers: {
@@ -28,10 +27,13 @@ const client = new ApolloClient({
 });
 
 ReactDOM.render(
-  <BrowserRouter>
-    <ApolloProvider client={client}>
-      <App />
-    </ApolloProvider>
-  </BrowserRouter>,
+  <ApolloProvider client={client}>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/blogs" component={Post} />
+      </Switch>
+    </BrowserRouter>
+  </ApolloProvider>,
   document.getElementById("root")
 );

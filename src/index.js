@@ -1,30 +1,39 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import {
+  ApolloClient,
+  ApolloProvider,
+  createHttpLink,
+  InMemoryCache,
+} from "@apollo/client";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import React from "react";
+import ReactDOM from "react-dom";
 
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import Post from "./pages/Post";
+import Home from "./pages/Home";
+
+import "./index.css";
+
 const { REACT_APP_STEPZEN_API_KEY, REACT_APP_STEPZEN_URI } = process.env;
 
 const client = new ApolloClient({
+  link: createHttpLink({
+    credentials: "same-origin",
+    headers: {
+      Authorization: `Apikey ${REACT_APP_STEPZEN_API_KEY}`,
+    },
+    uri: REACT_APP_STEPZEN_URI,
+  }),
   cache: new InMemoryCache(),
-  headers: {
-    Authorization: `Apikey ${REACT_APP_STEPZEN_API_KEY}`,
-  },
-  uri: REACT_APP_STEPZEN_URI
 });
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ApolloProvider client={client}>
-      <App />
-    </ApolloProvider>
-  </React.StrictMode>,
-  document.getElementById('root')
+  <ApolloProvider client={client}>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/posts/:postId" component={Post} />
+      </Switch>
+    </BrowserRouter>
+  </ApolloProvider>,
+  document.getElementById("root")
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

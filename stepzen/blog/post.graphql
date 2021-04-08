@@ -1,0 +1,36 @@
+type Post @mock {
+  id: ID! @mockfn(name: "List", values: ["1", "2"])
+  title: String! @mockfn(name: "List", values: ["Hello world!", "Another blog"])
+
+  content: String!
+    @mockfn(
+      name: "List"
+      values: [
+        "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#8217;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p> "
+      ]
+    )
+  excerpt: String!
+    @mockfn(
+      name: "List"
+      values: [
+        "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#8217;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into [&hellip;]</p>"
+      ]
+    )
+
+  image: String
+    @mockfn(name: "List", values: ["https://placekitten.com/200/300"])
+
+  authorId: ID! @mockfn(name: "List", values: ["1"])
+  author: Author
+    @materializer(
+      query: "getAuthorById"
+      arguments: [{ name: "id", field: "authorId" }]
+    )
+
+  published: DateTime!
+}
+
+type Query {
+  getPosts: [Post]
+  getPostById(id: ID!): Post
+}

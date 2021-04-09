@@ -1,11 +1,3 @@
-schema
-  @sdl(
-    files: [
-      "blog/author.graphql"
-      "blog/post.graphql"
-      "wordpress/posts.graphql"
-      "wordpress/pages.graphql"
-    ]
-  ) {
+schema @sdl(files: ["blog/post.graphql"]) {
   query: Query
 }

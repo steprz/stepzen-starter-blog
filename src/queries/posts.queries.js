@@ -7,7 +7,8 @@ export const GET_POST_BY_ID = gql`
       title
       content
       excerpt
-      image
+      authorName
+      authorLink
     }
   }
 `;
@@ -19,7 +20,8 @@ export const GET_POSTS = gql`
       title
       content
       excerpt
-      image
+      authorName
+      authorLink
     }
   }
 `;

@@ -1,9 +1,0 @@
-type Author @mock {
-  id: ID! @mockfn(name: "List", values: ["1"])
-  name: String! @mockfn(name: "List", values: ["Joe Bloggs"])
-}
-
-type Query {
-  getAuthors: [Author]
-  getAuthorById(id: ID!): Author
-}

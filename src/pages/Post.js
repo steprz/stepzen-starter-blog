@@ -8,7 +8,7 @@ import { GET_POST_BY_ID } from "../queries/posts.queries";
 
 function Post() {
   const { postId } = useParams();
-  const { data, error, loading } = useQuery(GET_POST_BY_ID, {
+  const { data, loading } = useQuery(GET_POST_BY_ID, {
     variables: {
       id: postId,
     },
@@ -27,7 +27,7 @@ function Post() {
           className="bg-cover h-64 text-center overflow-hidden"
           style={{
             height: "450px",
-            "background-image": `url('${post.image}')`,
+            "background-image": `url(http://placekitten.com/200/100)`,
           }}
           title={post.title}
         ></div>

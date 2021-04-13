@@ -9,6 +9,7 @@ import { GET_POSTS } from "../queries/posts.queries";
 const Home = () => {
   const { data, loading, error } = useQuery(GET_POSTS);
 
+
   return (
     //hero
     <Layout>

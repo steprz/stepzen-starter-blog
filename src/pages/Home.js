@@ -12,12 +12,16 @@ const Home = () => {
 
   return (
     //hero
-    <Layout>
-      <div>
-        <div>
+ 
+      <body>
+        <div id="top" className="page" role="document">
+        <header role="header">
+      
           <h2>
             Posts
           </h2>
+          </header>
+          <main role="main">
           <ul>
             {data?.getPosts?.map((post) => (
               <li>
@@ -28,9 +32,10 @@ const Home = () => {
               </li>
             ))}
           </ul>
-        </div>
-      </div>
-    </Layout>
+          </main>
+          </div>
+      </body>
+ 
   );
 };
 

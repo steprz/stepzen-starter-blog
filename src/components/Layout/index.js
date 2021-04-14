@@ -5,9 +5,9 @@ import Header from "../Header";
 
 const Layout = ({ children }) => {
   return (
-    <div className="center w85">
+    <div>
       <Header />
-      <div className="ph3 pv1 background-gray">{children}</div>
+      <div>{children}</div>
       <Footer />
     </div>
   );

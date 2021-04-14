@@ -24,12 +24,9 @@ function Post() {
     <Layout>
       <div>
         <div
-          style={{
-            height: "450px",
-            "background-image": `url(http://placekitten.com/200/100)`,
-          }}
           title={post.title}
         ></div>
+        <img src="https://images.unsplash.com/photo-1611095971113-9f7542655338?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=3151&q=80" alt="blog image placemark"/>
         <div>
           <div>
             <div>

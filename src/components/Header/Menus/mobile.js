@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 function MobileMenu() {
   return (
+    <header role="banner">
     <div
       id="navbar-collapse"
     >
@@ -27,6 +28,7 @@ function MobileMenu() {
         Signup
       </a>
     </div>
+    </header>
   );
 }
 

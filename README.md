@@ -54,4 +54,4 @@ _Note: This is not a production ready blog. React is not SEO freindly by default
 
         Runs the app in the development mode.
 
-    Open http://localhost:3000 to view it in the browser. 🚀🚀🚀
+    Open http://localhost:3000 to view it in the browser.

@@ -33,7 +33,7 @@ const Home = () => {
                                 <li className="tile">
                                     <img
                                         src="https://homepages.cae.wisc.edu/~ece533/images/arctichare.png"
-                                        alt="https://homepages.cae.wisc.edu/~ece533/images/arctichare.png"
+                                        alt="arctichare"
                                     />
                                     <Link
                                         to={`/posts/${post.id}`}

@@ -16,7 +16,7 @@ function Post() {
 
     const post = data?.getPostById;
 
-    console.log(post);
+    // console.log(post);
 
     if (loading) {
         return <p>Loading...</p>;
@@ -30,8 +30,8 @@ function Post() {
         <Layout>
             <div className="post-page">
                 <img
-                    src={post.featuredImage.source_url}
-                    alt={post.featuredImage.slug}
+                    src="https://homepages.cae.wisc.edu/~ece533/images/arctichare.png"
+                    alt="polar-bear"
                 />
                 <div>
                     <div>
@@ -42,7 +42,7 @@ function Post() {
                             <p>
                                 Written By:{" "}
                                 <Link to={post.authorUrl}>
-                                    {post.authorName}
+                                    {post.author.name}
                                 </Link>
                             </p>
                             <div

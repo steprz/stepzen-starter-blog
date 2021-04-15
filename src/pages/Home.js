@@ -32,8 +32,8 @@ const Home = () => {
                             {data?.getPosts?.map((post) => (
                                 <li className="tile">
                                     <img
-                                        src={post.featuredImage.source_url}
-                                        alt={post.featuredImage.slug}
+                                        src="https://homepages.cae.wisc.edu/~ece533/images/arctichare.png"
+                                        alt="https://homepages.cae.wisc.edu/~ece533/images/arctichare.png"
                                     />
                                     <Link
                                         to={`/posts/${post.id}`}
@@ -47,7 +47,7 @@ const Home = () => {
                                         to={`${post.authorLink}`}
                                         className="a"
                                     >
-                                        {post.authorName}{" "}
+                                        {post.author.name}{" "}
                                     </Link>
                                     <p>Post Id: {post.id}</p>
                                 </li>

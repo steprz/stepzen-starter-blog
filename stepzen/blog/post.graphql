@@ -13,10 +13,10 @@ type Post {
     title: String
     content: String
     contentProtected: Boolean
-    authorId: ID
+    authorId: ID!
     excerpt: String
     excerptProtected: Boolean
-    featuredMediaId: ID!
+    featuredMediaId: ID
     commentStatus: String
     pingStatus: String
     menuOrder: Int
@@ -31,30 +31,30 @@ type Post {
     authorAvatarUrl24: String
     authorAvatarUrl48: String
     authorAvatarUrl96: String
-    featuredImage: Image
+    author: Author
         @materializer(
-            query: "getImage"
-            arguments: [{ name: "id", field: "featuredMediaId" }]
+            query: "getAuthor"
+            arguments: [{ name: "id", field: "authorId" }]
         )
 }
 
-type Image {
+type Author {
     id: ID!
-    source_url: String
+    name: String
     slug: String
-    width: Int
-    height: Int
+    avatarUrl24: String
+    avatarUrl48: String
+    avatarUrl96: String
 }
 
 type Query {
-    imageByPost(id: ID!): Image
-        @sequence(steps: [{ query: "getPosts" }, { query: "getImage" }])
-    getImage(id: ID!): Image
+    getAuthor(id: ID!): Author
         @rest(
-            endpoint: "http://create-sz-app-wordpress.herokuapp.com/wp-json/wp/v2/media/$id;"
+            endpoint: "http://create-sz-app-wordpress.herokuapp.com/wp-json/wp/v2/users/$id;"
             setters: [
-                { field: "width", path: "media_details.width" }
-                { field: "height", path: "media_details.height" }
+                { field: "avatarUrl24", path: "avatar_urls.`24`" }
+                { field: "avatarUrl48", path: "avatar_urls.`48`" }
+                { field: "avatarUrl96", path: "avatar_urls.`96`" }
             ]
         )
     getPosts: [Post]

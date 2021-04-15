@@ -1,131 +1,164 @@
 type Post {
-  date: String
-  dateGMT: String
-  guid: String
-  id: ID!
-  link: String
-  modified: String
-  modifiedGMT: String
-  slug: String
-  status: String
-  type: String
-  parentId: ID
-  title: String
-  content: String
-  contentProtected: Boolean
-  authorId: ID
-  excerpt: String
-  excerptProtected: Boolean
-  featuredMediaId: ID
-  commentStatus: String
-  pingStatus: String
-  menuOrder: Int
-  format: String
-  sticky: Boolean
-  template: String
-  authorName: String
-  authorUrl: String
-  authorDescription: String
-  authorLink: String
-  authorSlug: String
-  authorAvatarUrl24: String
-  authorAvatarUrl48: String
-  authorAvatarUrl96: String
+    date: String
+    dateGMT: String
+    guid: String
+    id: ID!
+    link: String
+    modified: String
+    modifiedGMT: String
+    slug: String
+    status: String
+    type: String
+    parentId: ID
+    title: String
+    content: String
+    contentProtected: Boolean
+    authorId: ID
+    excerpt: String
+    excerptProtected: Boolean
+    featuredMediaId: ID!
+    commentStatus: String
+    pingStatus: String
+    menuOrder: Int
+    format: String
+    sticky: Boolean
+    template: String
+    authorName: String
+    authorUrl: String
+    authorDescription: String
+    authorLink: String
+    authorSlug: String
+    authorAvatarUrl24: String
+    authorAvatarUrl48: String
+    authorAvatarUrl96: String
+    featuredImage: Image
+        @materializer(
+            query: "getImage"
+            arguments: [{ name: "id", field: "featuredMediaId" }]
+        )
+}
+
+type Image {
+    id: ID!
+    source_url: String
+    slug: String
+    width: Int
+    height: Int
+}
+
+type idWrapper {
+    id: ID!
 }
 
 type Query {
-  getPosts: [Post]
-    @rest(
-      endpoint: "http://create-sz-app-wordpress.herokuapp.com/wp-json/wp/v2/posts?_embed"
-      setters: [
-        { field: "date", path: "date" }
-        { field: "dateGMT", path: "date_gmt" }
-        { field: "guid", path: "guid.rendered" }
-        { field: "id", path: "id" }
-        { field: "link", path: "link" }
-        { field: "modified", path: "modified" }
-        { field: "modifiedGMT", path: "modified_gmt" }
-        { field: "slug", path: "slug" }
-        { field: "status", path: "status" }
-        { field: "type", path: "type" }
-        { field: "parentId", path: "parent" }
-        { field: "title", path: "title.rendered" }
-        { field: "content", path: "content.rendered" }
-        { field: "contentProtected", path: "content.protected" }
-        { field: "authorId", path: "author" }
-        { field: "excerpt", path: "excerpt.rendered" }
-        { field: "excerptProtected", path: "excerpt.protected" }
-        { field: "featuredMediaId", path: "featured_media" }
-        { field: "commentStatus", path: "comment_status" }
-        { field: "pingStatus", path: "ping_status" }
-        { field: "menuOrder", path: "menu_order" }
-        { field: "format", path: "format" }
-        { field: "sticky", path: "sticky" }
-        { field: "template", path: "template" }
-        { field: "authorName", path: "_embedded.author[].name" }
-        { field: "authorUrl", path: "_embedded.author[].url" }
-        { field: "authorDescription", path: "_embedded.author[].description" }
-        { field: "authorLink", path: "_embedded.author[].link" }
-        { field: "authorSlug", path: "_embedded.author[].slug" }
-        {
-          field: "authorAvatarUrl24"
-          path: "_embedded.author[].avatar_urls.`24`"
-        }
-        {
-          field: "authorAvatarUrl48"
-          path: "_embedded.author[].avatar_urls.`48`"
-        }
-        {
-          field: "authorAvatarUrl96"
-          path: "_embedded.author[].avatar_urls.`96`"
-        }
-      ]
-    )
-  getPostById(id: ID!): Post
-    @rest(
-      endpoint: "http://create-sz-app-wordpress.herokuapp.com/wp-json/wp/v2/posts/$id?_embed"
-      setters: [
-        { field: "date", path: "date" }
-        { field: "dateGMT", path: "date_gmt" }
-        { field: "guid", path: "guid.rendered" }
-        { field: "id", path: "id" }
-        { field: "link", path: "link" }
-        { field: "modified", path: "modified" }
-        { field: "modifiedGMT", path: "modified_gmt" }
-        { field: "slug", path: "slug" }
-        { field: "status", path: "status" }
-        { field: "type", path: "type" }
-        { field: "parentId", path: "parent" }
-        { field: "title", path: "title.rendered" }
-        { field: "content", path: "content.rendered" }
-        { field: "contentProtected", path: "content.protected" }
-        { field: "authorId", path: "author" }
-        { field: "excerpt", path: "excerpt.rendered" }
-        { field: "excerptProtected", path: "excerpt.protected" }
-        { field: "featuredMediaId", path: "featured_media" }
-        { field: "commentStatus", path: "comment_status" }
-        { field: "pingStatus", path: "ping_status" }
-        { field: "menuOrder", path: "menu_order" }
-        { field: "format", path: "format" }
-        { field: "sticky", path: "sticky" }
-        { field: "template", path: "template" }
-        { field: "authorName", path: "_embedded.author[].name" }
-        { field: "authorUrl", path: "_embedded.author[].url" }
-        { field: "authorDescription", path: "_embedded.author[].description" }
-        { field: "authorLink", path: "_embedded.author[].link" }
-        { field: "authorSlug", path: "_embedded.author[].slug" }
-        {
-          field: "authorAvatarUrl24"
-          path: "_embedded.author[].avatar_urls.`24`"
-        }
-        {
-          field: "authorAvatarUrl48"
-          path: "_embedded.author[].avatar_urls.`48`"
-        }
-        {
-          field: "authorAvatarUrl96"
-          path: "_embedded.author[].avatar_urls.`96`"
-        }
-      ]
-    )
+    imageByPost(id: ID!): Image
+        @sequence(steps: [{ query: "getPosts" }, { query: "getImage" }])
+    getImage(id: ID!): Image
+        @rest(
+            endpoint: "http://create-sz-app-wordpress.herokuapp.com/wp-json/wp/v2/media/$id;"
+            setters: [
+                { field: "width", path: "media_details.width" }
+                { field: "height", path: "media_details.height" }
+            ]
+        )
+    getPosts: [Post]
+        @rest(
+            endpoint: "http://create-sz-app-wordpress.herokuapp.com/wp-json/wp/v2/posts?_embed"
+            setters: [
+                { field: "date", path: "date" }
+                { field: "dateGMT", path: "date_gmt" }
+                { field: "guid", path: "guid.rendered" }
+                { field: "id", path: "id" }
+                { field: "link", path: "link" }
+                { field: "modified", path: "modified" }
+                { field: "modifiedGMT", path: "modified_gmt" }
+                { field: "slug", path: "slug" }
+                { field: "status", path: "status" }
+                { field: "type", path: "type" }
+                { field: "parentId", path: "parent" }
+                { field: "title", path: "title.rendered" }
+                { field: "content", path: "content.rendered" }
+                { field: "contentProtected", path: "content.protected" }
+                { field: "authorId", path: "author" }
+                { field: "excerpt", path: "excerpt.rendered" }
+                { field: "excerptProtected", path: "excerpt.protected" }
+                { field: "featuredMediaId", path: "featured_media" }
+                { field: "commentStatus", path: "comment_status" }
+                { field: "pingStatus", path: "ping_status" }
+                { field: "menuOrder", path: "menu_order" }
+                { field: "format", path: "format" }
+                { field: "sticky", path: "sticky" }
+                { field: "template", path: "template" }
+                { field: "authorName", path: "_embedded.author[].name" }
+                { field: "authorUrl", path: "_embedded.author[].url" }
+                {
+                    field: "authorDescription"
+                    path: "_embedded.author[].description"
+                }
+                { field: "authorLink", path: "_embedded.author[].link" }
+                { field: "authorSlug", path: "_embedded.author[].slug" }
+                {
+                    field: "authorAvatarUrl24"
+                    path: "_embedded.author[].avatar_urls.`24`"
+                }
+                {
+                    field: "authorAvatarUrl48"
+                    path: "_embedded.author[].avatar_urls.`48`"
+                }
+                {
+                    field: "authorAvatarUrl96"
+                    path: "_embedded.author[].avatar_urls.`96`"
+                }
+            ]
+        )
+    getPostById(id: ID!): Post
+        @rest(
+            endpoint: "http://create-sz-app-wordpress.herokuapp.com/wp-json/wp/v2/posts/$id?_embed"
+            setters: [
+                { field: "date", path: "date" }
+                { field: "dateGMT", path: "date_gmt" }
+                { field: "guid", path: "guid.rendered" }
+                { field: "id", path: "id" }
+                { field: "link", path: "link" }
+                { field: "modified", path: "modified" }
+                { field: "modifiedGMT", path: "modified_gmt" }
+                { field: "slug", path: "slug" }
+                { field: "status", path: "status" }
+                { field: "type", path: "type" }
+                { field: "parentId", path: "parent" }
+                { field: "title", path: "title.rendered" }
+                { field: "content", path: "content.rendered" }
+                { field: "contentProtected", path: "content.protected" }
+                { field: "authorId", path: "author" }
+                { field: "excerpt", path: "excerpt.rendered" }
+                { field: "excerptProtected", path: "excerpt.protected" }
+                { field: "featuredMediaId", path: "featured_media" }
+                { field: "commentStatus", path: "comment_status" }
+                { field: "pingStatus", path: "ping_status" }
+                { field: "menuOrder", path: "menu_order" }
+                { field: "format", path: "format" }
+                { field: "sticky", path: "sticky" }
+                { field: "template", path: "template" }
+                { field: "authorName", path: "_embedded.author[].name" }
+                { field: "authorUrl", path: "_embedded.author[].url" }
+                {
+                    field: "authorDescription"
+                    path: "_embedded.author[].description"
+                }
+                { field: "authorLink", path: "_embedded.author[].link" }
+                { field: "authorSlug", path: "_embedded.author[].slug" }
+                {
+                    field: "authorAvatarUrl24"
+                    path: "_embedded.author[].avatar_urls.`24`"
+                }
+                {
+                    field: "authorAvatarUrl48"
+                    path: "_embedded.author[].avatar_urls.`48`"
+                }
+                {
+                    field: "authorAvatarUrl96"
+                    path: "_embedded.author[].avatar_urls.`96`"
+                }
+            ]
+        )
 }

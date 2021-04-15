@@ -5,33 +5,29 @@ import DesktopMenu from "./Menus/desktop";
 import MobileMenu from "./Menus/mobile";
 
 const Header = () => {
-  const [toggle, setToggle] = useState(false);
+    const [toggle, setToggle] = useState(false);
 
-  const toggleMobile = () => {
-    setToggle(!toggle);
-  };
+    const toggleMobile = () => {
+        setToggle(!toggle);
+    };
 
-  return (
-    <div>
-      <nav>
-        <div>
-          <div>
-            <Link to="/">
-              StepZen Starter Blog
+    return (
+        <nav id="mainNav" class="mainNav">
+            <Link to="/" className="logo">
+                StepZen Starter Blog
             </Link>
-            <button
-              id="navbar-toggle"
-              onClick={toggleMobile}
-            >
-              <i className="fa fa-bars"></i>
-            </button>
-          </div>
-          {toggle ? <MobileMenu /> : null}
-          <DesktopMenu />
-        </div>
-      </nav>
-    </div>
-  );
+            <div class="container">
+                <ul id="menu" class="menu">
+                    <li>
+                        <Link to="/">Home</Link>
+                    </li>
+                    <li>
+                        <Link to="#">About</Link>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    );
 };
 
 export default Header;

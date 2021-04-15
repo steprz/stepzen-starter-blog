@@ -31,7 +31,7 @@ function Post() {
             <div className="post-page">
                 <img
                     src="https://homepages.cae.wisc.edu/~ece533/images/arctichare.png"
-                    alt="polar-bear"
+                    alt="arctichare"
                 />
                 <div>
                     <div>

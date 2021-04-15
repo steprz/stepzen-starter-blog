@@ -1,70 +1,57 @@
-# Getting Started with Create React App
+<!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
+<p align="center">
+  <a href="https://www.stepzen.com">
+    <img alt="Gatsby" src="https://stepzen.com/images/logo-white.svg" width="160" />
+  </a>
+</p>
+<h1 align="center">
+  StepZen Starter Blog
+</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The StepZen starter blog is quick start to connecting a frontend block template to your StepZen GraphQL endpoint.
 
-## Available Scripts
+_Note: This is not a production ready blog. React is not SEO freindly by default, and should be supported by Server Side or Static Rendering using frameworks such as NextJS and GatsbyJS._
 
-In the project directory, you can run:
+## 🚀 Quick start
 
-### `npm start`
+1.  **Create the StepZen Endpoint.**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+    Run the
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+    ```shell
+    npx create-stepzen-app
+    ```
 
-### `npm test`
+## Cloning the Repo
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1.  **Create the StepZen Endpoint.**
 
-### `npm run build`
+    Installing and using the StepZen CLI to spin up the GraphQL endpoint.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    ```shell
+    # Install StepZen CLI
+    npm install -g stepzen
+    # In the stepzen folder, run...
+    $ stepzen start
+    ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1.  **Spinning up the frontend.**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    Navigate into your root folder.
 
-### `npm run eject`
+    ```shell
+    cd ..
+    npm or yarn install
+    ```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+    ```
+    $ cp .env.example .env
+    // paste your account key and endpoint from StepZen start into .env
+    $ yarn start
+    ```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1.  **Navigate to the source code and begin editing the blog!**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+        Runs the app in the development mode.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    Open http://localhost:3000 to view it in the browser. 🚀🚀🚀

@@ -8,7 +8,8 @@ import { GET_POSTS } from "../queries/posts.queries";
 
 const Home = () => {
     const { data, loading, error } = useQuery(GET_POSTS);
-    console.log(data);
+
+    // console.log(data);
 
     if (loading) {
         return <p>Loading...</p>;

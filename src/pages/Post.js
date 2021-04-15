@@ -16,7 +16,7 @@ function Post() {
 
     const post = data?.getPostById;
 
-    console.log(post);
+    // console.log(post);
 
     if (loading) {
         return <p>Loading...</p>;

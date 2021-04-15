@@ -1,5 +1,5 @@
 import { React } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 
 import Layout from "../components/Layout";
@@ -36,19 +36,23 @@ function Post() {
                 <div>
                     <div>
                         <div>
-                            <a href="#">Travel</a>, <a href="#">Culture</a>
+                            <Link to="#">Travel</Link>,{" "}
+                            <Link to="#">Culture</Link>
                             <h1 href="#">{post.title}</h1>
                             <p>
                                 Written By:{" "}
-                                <a href={post.authorUrl}>{post.authorName}</a>
+                                <Link to={post.authorUrl}>
+                                    {post.authorName}
+                                </Link>
                             </p>
                             <div
                                 dangerouslySetInnerHTML={{
                                     __html: post.content,
                                 }}
                             ></div>
-                            <a href="#">#Culture</a>, <a href="#">#Travel</a>,{" "}
-                            <a href="#">#Society</a>
+                            <Link to="#">#Culture</Link>,{" "}
+                            <Link to="#">#Travel</Link>,{" "}
+                            <Link to="#">#Society</Link>
                         </div>
                     </div>
                 </div>

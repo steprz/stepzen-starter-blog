@@ -1,16 +1,7 @@
 import { Link } from "react-router-dom";
-import { React, useState } from "react";
-
-import DesktopMenu from "./Menus/desktop";
-import MobileMenu from "./Menus/mobile";
+import { React } from "react";
 
 const Header = () => {
-    const [toggle, setToggle] = useState(false);
-
-    const toggleMobile = () => {
-        setToggle(!toggle);
-    };
-
     return (
         <nav id="mainNav" class="mainNav">
             <Link to="/" className="logo">

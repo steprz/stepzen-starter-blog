@@ -23,7 +23,7 @@ const Home = () => {
         <Layout>
             <body>
                 <div id="top" className="page" role="document">
-                    <header role="header">
+                    <header>
                         <h2>Posts</h2>
                     </header>
                     <main role="main">

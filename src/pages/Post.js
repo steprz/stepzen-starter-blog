@@ -1,5 +1,5 @@
 import { React } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 
 import Layout from "../components/Layout";
@@ -7,89 +7,58 @@ import Layout from "../components/Layout";
 import { GET_POST_BY_ID } from "../queries/posts.queries";
 
 function Post() {
-  const { postId } = useParams();
-  const { data, loading } = useQuery(GET_POST_BY_ID, {
-    variables: {
-      id: postId,
-    },
-  });
+    const { postId } = useParams();
+    const { data, loading, error } = useQuery(GET_POST_BY_ID, {
+        variables: {
+            id: postId,
+        },
+    });
 
-  const post = data?.getPostById;
+    const post = data?.getPostById;
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
+    console.log(post);
 
-  return (
-    <Layout>
-      <div>
-        <div
-          title={post.title}
-        ></div>
-        <img src="https://images.unsplash.com/photo-1611095971113-9f7542655338?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=3151&q=80" alt="blog image placemark"/>
-        <div>
-          <div>
-            <div>
-              <a
-                href="#"
-              >
-                Election
-              </a>
-              ,{" "}
-              <a
-                href="#"
-              >
-                Politics
-              </a>
-              <h1 href="#">
-                {post.title}
-              </h1>
-              <p>
-                Written By:{" "}
-                <a
-                  href="#"
-               
-                >
-                  Ahmad Sultani
-                </a>
-              </p>
-              <div dangerouslySetInnerHTML={{ __html: post.content }}></div>
-              <a
-                href="#"
- 
-              >
-                #Election
-              </a>
-              ,{" "}
-              <a
-                href="#"
-              >
-                #people
-              </a>
-              ,{" "}
-              <a
-                href="#"
-              >
-                #Election2020
-              </a>
-              ,{" "}
-              <a
-                href="#"
-              >
-                #trump
-              </a>
-              ,
-              <a
-                href="#"
-              >
-                #Joe
-              </a>
+    if (loading) {
+        return <p>Loading...</p>;
+    }
+    if (error) {
+        // You can render any custom fallback UI
+        return <h1>{error.message}</h1>;
+    }
+
+    return (
+        <Layout>
+            <div className="post-page">
+                <img
+                    src={post.featuredImage.source_url}
+                    alt={post.featuredImage.slug}
+                />
+                <div>
+                    <div>
+                        <div>
+                            <Link to="#">Travel</Link>,{" "}
+                            <Link to="#">Culture</Link>
+                            <h1 href="#">{post.title}</h1>
+                            <p>
+                                Written By:{" "}
+                                <Link to={post.authorUrl}>
+                                    {post.authorName}
+                                </Link>
+                            </p>
+                            <div
+                                dangerouslySetInnerHTML={{
+                                    __html: post.content,
+                                }}
+                            ></div>
+                            <Link to="#">#Culture</Link>,{" "}
+                            <Link to="#">#Travel</Link>,{" "}
+                            <Link to="#">#Society</Link>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </Layout>
-  );
+        </Layout>
+    );
 }
 
 export default Post;

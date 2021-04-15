@@ -35,12 +35,13 @@ export const GET_POST_BY_ID = gql`
             authorAvatarUrl24
             authorAvatarUrl48
             authorAvatarUrl96
-            featuredImage {
-                height
+            author {
+                avatarUrl24
+                avatarUrl48
+                avatarUrl96
                 id
+                name
                 slug
-                source_url
-                width
             }
         }
     }
@@ -81,12 +82,13 @@ export const GET_POSTS = gql`
             authorAvatarUrl24
             authorAvatarUrl48
             authorAvatarUrl96
-            featuredImage {
-                height
+            author {
+                avatarUrl24
+                avatarUrl48
+                avatarUrl96
                 id
+                name
                 slug
-                source_url
-                width
             }
         }
     }

@@ -46,10 +46,6 @@ type Image {
     height: Int
 }
 
-type idWrapper {
-    id: ID!
-}
-
 type Query {
     imageByPost(id: ID!): Image
         @sequence(steps: [{ query: "getPosts" }, { query: "getImage" }])

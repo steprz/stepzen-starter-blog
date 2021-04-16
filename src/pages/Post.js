@@ -16,14 +16,11 @@ function Post() {
 
   const post = data?.getPostById;
 
-  // console.log(post);
-
   if (loading) {
     return <p>Loading...</p>;
   }
   if (error) {
-    // You can render any custom fallback UI
-    return <h1>{error.message}</h1>;
+    return <p>{error.message}</p>;
   }
 
   return (

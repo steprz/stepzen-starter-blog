@@ -3,12 +3,12 @@ import { React } from 'react';
 
 const Header = () => {
   return (
-    <nav id="mainNav" class="mainNav">
+    <nav id="mainNav" className="mainNav">
       <Link to="/" className="logo">
         StepZen Starter Blog
       </Link>
-      <div class="container">
-        <ul id="menu" class="menu">
+      <div className="container">
+        <ul id="menu" className="menu">
           <li>
             <Link to="/">Home</Link>
           </li>

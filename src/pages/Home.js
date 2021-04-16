@@ -34,7 +34,7 @@ const Home = () => {
                   <h2>{post.title}</h2>
                 </Link>
                 Author:
-                <Link to={`${post.authorLink}`} className="a">
+                <Link to="#" className="a">
                   {post.author.name}{' '}
                 </Link>
                 <p>Post Id: {post.id}</p>

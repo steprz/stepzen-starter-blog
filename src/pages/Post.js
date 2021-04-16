@@ -36,7 +36,7 @@ function Post() {
               <Link to="#">Travel</Link>, <Link to="#">Culture</Link>
               <h1 href="#">{post.title}</h1>
               <p>
-                Written By: <Link to={post.authorUrl}>{post.author.name}</Link>
+                Written By: <Link to="#">{post.author.name}</Link>
               </p>
               <div
                 dangerouslySetInnerHTML={{

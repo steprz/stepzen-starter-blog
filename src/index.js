@@ -3,21 +3,21 @@ import {
   ApolloProvider,
   createHttpLink,
   InMemoryCache,
-} from "@apollo/client";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import React from "react";
-import ReactDOM from "react-dom";
+} from '@apollo/client';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-import Post from "./pages/Post";
-import Home from "./pages/Home";
+import Post from './pages/Post';
+import Home from './pages/Home';
 
-import "./index.css";
+import './index.css';
 
 const { REACT_APP_STEPZEN_API_KEY, REACT_APP_STEPZEN_URI } = process.env;
 
 const client = new ApolloClient({
   link: createHttpLink({
-    credentials: "same-origin",
+    credentials: 'same-origin',
     headers: {
       Authorization: `Apikey ${REACT_APP_STEPZEN_API_KEY}`,
     },
@@ -35,5 +35,5 @@ ReactDOM.render(
       </Switch>
     </BrowserRouter>
   </ApolloProvider>,
-  document.getElementById("root")
+  document.getElementById('root')
 );

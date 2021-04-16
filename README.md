@@ -8,5 +8,5 @@
 </h1>
 
 ```shell
-npx create-stepzen-app --template https://github.com/steprz/stepzen-starter-blog
+npx create-stepzen-app my-app --template https://github.com/steprz/stepzen-starter-blog
 ```
